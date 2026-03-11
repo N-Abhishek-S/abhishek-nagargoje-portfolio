@@ -28,7 +28,7 @@
     "type": "git",
     "url": "https://github.com/sanidhyy/modern-portfolio.git"
   },
-  "homepage": "https://github.com/sanidhyy/modern-portfolio#readme",
+  "homepage": "https://n-abhishek-s.github.io/abhishek-nagargoje-portfolio",
   "bugs": {
     "url": "https://github.com/sanidhyy/modern-portfolio/issues",
     "email": "sanidhya.verma12345@gmail.com"
@@ -46,6 +46,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "next build && gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },
@@ -66,6 +67,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2"
   }
