@@ -1,0 +1,534 @@
+"use client";
+import { motion, AnimatePresence } from "framer-motion";
+import { useMemo, useState, useCallback } from "react";
+import CountUp from "react-countup";
+import { FaJs, FaReact, FaJava, FaGitAlt } from "react-icons/fa";
+import {
+  SiNextdotjs, SiTailwindcss, SiAppwrite,
+  SiReactrouter, SiGreensock, SiThreedotjs,
+} from "react-icons/si";
+import {
+  HiOutlineSparkles, HiOutlineDownload,
+  HiOutlineAcademicCap, HiOutlineBriefcase,
+  HiOutlineLightBulb, HiOutlineCode,
+} from "react-icons/hi";
+
+import Avatar from "../Avatar";
+import Circles from "../Circles";
+import { fadeIn } from "../../variants";
+import { personalInfo } from "../../data/personalInfo";
+
+/* ─────────────────────────────────────────────────────────────
+   DATA  (corrected content + per-tab accent colours)
+───────────────────────────────────────────────────────────── */
+export const aboutData = [
+  {
+    title: "skills",
+    icon: HiOutlineCode,
+    accent: "#818cf8",
+    glow:   "rgba(99,102,241,0.20)",
+    info: [
+      {
+        title: "Frontend Development",
+        icons: [
+          { Icon: FaReact,       label: "React.js" },
+          { Icon: FaJs,          label: "JavaScript (ES6+)" },
+          { Icon: SiTailwindcss, label: "Tailwind CSS" },
+          { Icon: SiReactrouter, label: "React Router" },
+          { Icon: SiGreensock,   label: "GSAP Animations" },
+        ],
+      },
+      {
+        title: "Backend & APIs",
+        icons: [
+          { Icon: SiAppwrite, label: "Appwrite Backend" },
+          { Icon: FaJava,     label: "Java Fundamentals" },
+          { Icon: FaGitAlt,   label: "Git & GitHub" },
+        ],
+      },
+      {
+        title: "Currently Exploring",
+        icons: [
+          { Icon: SiNextdotjs,  label: "Next.js" },
+          { Icon: SiThreedotjs, label: "Three.js" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "experience",
+    icon: HiOutlineBriefcase,
+    accent: "#34d399",
+    glow:   "rgba(52,211,153,0.18)",
+    info: [
+      {
+        title: "Full Stack Web Developer",
+        stage: "2023 – Present",
+        description:
+          "Developing full-stack and frontend web applications using React.js, JavaScript, Tailwind CSS, and backend services. Focused on building responsive user interfaces, integrating APIs, and implementing modern UI animations.",
+      },
+      {
+        title: "VeriMart – AI Shopping Assistant",
+        stage: "2024 – Present",
+        description:
+          "Building an AI-powered shopping assistant for the Avishkar state-level innovation competition featuring AI product recommendations, price comparison, and intelligent product discovery.",
+      },
+    ],
+  },
+  {
+    title: "education",
+    icon: HiOutlineAcademicCap,
+    accent: "#f472b6",
+    glow:   "rgba(244,114,182,0.18)",
+    info: [
+      {
+        title: "Bachelor of Computer Applications (BCA)",
+        stage: "2023 – 2026",
+        description: `${personalInfo.education.college}, ${personalInfo.education.university}`,
+      },
+      {
+        title: "Technical Self-Learning",
+        stage: "Ongoing",
+        description:
+          "Focused on advanced React development, JavaScript fundamentals, Data Structures preparation, and modern web technologies.",
+      },
+    ],
+  },
+  {
+    title: "goals",
+    icon: HiOutlineLightBulb,
+    accent: "#fbbf24",
+    glow:   "rgba(251,191,36,0.18)",
+    info: [
+      {
+        title: "Industry-Ready Full Stack Developer",
+        stage: "Current Focus",
+        description:
+          "Strengthening skills in the MERN stack by building real-world applications and improving system design and frontend performance.",
+      },
+      {
+        title: "Higher Education – MCA",
+        stage: "2026 Plan",
+        description:
+          "Planning to pursue MCA through the Maharashtra MCA CET to deepen knowledge in computer science and software development.",
+      },
+    ],
+  },
+];
+
+const stats = [
+  { value: 8,    suffix: "+", label: "Projects Built" },
+  { value: 10,   suffix: "+", label: "Technologies" },
+  { value: 2,    suffix: "+", label: "Years Coding" },
+  { value: 2026, suffix: "",  label: "Graduation" },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   STAT CARD
+───────────────────────────────────────────────────────────── */
+const StatCard = ({ value, suffix, label, delay }) => (
+  <motion.div
+    variants={fadeIn("up", delay)}
+    initial="hidden"
+    animate="show"
+    className="relative group flex flex-col items-center justify-center p-5 rounded-2xl
+               border border-white/10 bg-white/[0.03]
+               hover:border-accent/40 hover:bg-white/[0.06]
+               transition-all duration-500 overflow-hidden"
+  >
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity
+                    duration-500 bg-gradient-radial from-accent/10 via-transparent
+                    to-transparent pointer-events-none" />
+    <div className="text-3xl font-black text-accent tabular-nums">
+      <CountUp start={0} end={value} duration={2.5} separator="" />
+      <span className="text-xl">{suffix}</span>
+    </div>
+    <div className="mt-1 text-[11px] uppercase tracking-[0.15em] text-white/50 font-medium text-center">
+      {label}
+    </div>
+  </motion.div>
+);
+
+/* ─────────────────────────────────────────────────────────────
+   SKILL CHIP
+───────────────────────────────────────────────────────────── */
+const SkillChip = ({ Icon, label, accent }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <motion.div
+      whileHover={{ scale: 1.15, y: -2 }}
+      className="flex flex-col items-center gap-1.5 cursor-default"
+      title={label}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-lg transition-all duration-300"
+        style={{
+          background:   hovered ? `${accent}18` : "rgba(255,255,255,0.05)",
+          border:       hovered ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.10)",
+          boxShadow:    hovered ? `0 0 16px ${accent}40` : "none",
+        }}
+      >
+        <Icon style={{ color: hovered ? accent : "rgba(255,255,255,0.70)", transition: "color .25s" }} />
+      </div>
+      <span
+        className="text-[9px] uppercase tracking-wider transition-colors duration-300"
+        style={{ color: hovered ? "rgba(255,255,255,.60)" : "rgba(255,255,255,.30)" }}
+      >
+        {label}
+      </span>
+    </motion.div>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
+   TAB BUTTON
+───────────────────────────────────────────────────────────── */
+const TabBtn = ({ item, active, onClick }) => {
+  const TabIcon = item.icon;
+  return (
+    <motion.button
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
+      onClick={onClick}
+      type="button"
+      role="tab"
+      aria-selected={active}
+      className="relative flex items-center gap-2 px-4 py-2 rounded-full text-xs
+                 font-semibold uppercase tracking-widest transition-all duration-300
+                 focus:outline-none focus-visible:ring-2"
+      style={{
+        background:  active ? `${item.accent}22` : "rgba(255,255,255,0.05)",
+        color:       active ? item.accent         : "rgba(255,255,255,0.50)",
+        border:      active ? `1px solid ${item.accent}50` : "1px solid rgba(255,255,255,0.10)",
+        boxShadow:   active ? `0 4px 20px ${item.glow}` : "none",
+        transform:   active ? "translateY(-1px)"  : "none",
+      }}
+    >
+      <TabIcon className="text-sm" />
+      {item.title}
+    </motion.button>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
+   INFO ENTRY
+───────────────────────────────────────────────────────────── */
+const InfoEntry = ({ item, index: i, total, accent }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: i * 0.08, duration: 0.3 }}
+      className="group relative"
+    >
+      <div
+        className="flex gap-4 p-4 rounded-xl transition-all duration-300"
+        style={{ background: hovered ? "rgba(255,255,255,0.04)" : "transparent" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <div className="flex flex-col items-center pt-1 shrink-0">
+          <div
+            className="w-2 h-2 rounded-full transition-all duration-300"
+            style={{
+              background: hovered ? accent : `${accent}55`,
+              boxShadow:  hovered ? `0 0 8px ${accent}` : "none",
+            }}
+          />
+          {i < total - 1 && (
+            <div className="w-px flex-1 mt-2 bg-gradient-to-b from-white/10 to-transparent" />
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <h4
+            className="font-semibold text-sm leading-snug mb-1 transition-colors duration-300"
+            style={{ color: hovered ? accent : "#f1f5f9" }}
+          >
+            {item.title}
+          </h4>
+
+          {item.stage && (
+            <span
+              className="inline-block text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full mb-2"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                background: `${accent}15`,
+                color:       accent,
+                border:      `1px solid ${accent}30`,
+              }}
+            >
+              {item.stage}
+            </span>
+          )}
+
+          {item.description && (
+            <p className="text-white/50 text-xs leading-relaxed">{item.description}</p>
+          )}
+
+          {item.icons && (
+            <div className="flex flex-wrap gap-4 mt-4">
+              {item.icons.map(({ Icon, label }) => (
+                <SkillChip key={label} Icon={Icon} label={label} accent={accent} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {i < total - 1 && (
+        <div className="ml-6 h-px bg-gradient-to-r from-white/5 via-white/10 to-transparent" />
+      )}
+    </motion.div>
+  );
+};
+
+/* ─────────────────────────────────────────────────────────────
+   MAIN COMPONENT
+───────────────────────────────────────────────────────────── */
+const About = () => {
+  const [index, setIndex]    = useState(0);
+  const currentTab           = useMemo(() => aboutData[index], [index]);
+  const handleTabClick       = useCallback((i) => setIndex(i), []);
+  const handleResumeDownload = useCallback(() => {
+    window.open(personalInfo.resumePath, "_blank", "noopener,noreferrer");
+  }, []);
+
+  return (
+    <>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');`}</style>
+
+      <div className="relative min-h-screen py-28 xl:py-32 text-center xl:text-left overflow-hidden">
+
+        {/* Ambient blobs */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                          w-[800px] h-[800px] bg-gradient-radial from-accent/[0.03] to-transparent rounded-full" />
+        </div>
+
+        <Circles />
+
+        {/* Avatar */}
+        <motion.div
+          variants={fadeIn("right", 0.2)}
+          initial="hidden"
+          animate="show"
+          exit="hidden"
+          className="hidden xl:flex absolute bottom-0 left-0 w-[380px] h-[520px] pointer-events-none"
+          style={{
+            maskImage: "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+            maskComposite: "intersect",
+            WebkitMaskComposite: "source-in",
+            opacity: 0.55,
+          }}
+        >
+          <Avatar />
+        </motion.div>
+
+        <div className="container mx-auto px-4 xl:px-8 h-full">
+          <div className="flex flex-col xl:flex-row gap-12 xl:gap-16 items-start">
+
+            {/* ══ LEFT COLUMN ══ */}
+            <div className="flex-1 flex flex-col justify-center z-10 max-w-xl mx-auto xl:mx-0">
+
+              {/* Badge */}
+              <motion.div
+                variants={fadeIn("down", 0.1)}
+                initial="hidden"
+                animate="show"
+                className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full
+                           border border-accent/30 bg-accent/5 text-accent
+                           text-xs font-mono uppercase tracking-widest w-fit mx-auto xl:mx-0"
+              >
+                <HiOutlineSparkles className="text-sm" />
+                About Me
+              </motion.div>
+
+              {/* Heading */}
+              <motion.h2
+                variants={fadeIn("right", 0.2)}
+                initial="hidden"
+                animate="show"
+                exit="hidden"
+                className="text-4xl xl:text-5xl font-black leading-[1.1] mb-6 tracking-tight"
+              >
+                Building{" "}
+                <span className="relative inline-block">
+                  <span className="text-accent">modern</span>
+                  <motion.span
+                    className="absolute -bottom-1 left-0 h-[3px] bg-gradient-to-r from-accent to-cyan-400 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                  />
+                </span>{" "}
+                web apps
+                <br />
+                <span
+                  className="text-3xl xl:text-4xl font-black"
+                  style={{ WebkitTextStroke: "1px rgba(255,255,255,0.22)", color: "transparent" }}
+                >
+                  with React & JavaScript
+                </span>
+                <span className="text-accent">.</span>
+              </motion.h2>
+
+              {/* ── BIO — updated text only, structure identical ── */}
+              <motion.p
+                variants={fadeIn("right", 0.4)}
+                initial="hidden"
+                animate="show"
+                className="text-white/60 text-base leading-relaxed mb-10 max-w-[480px] mx-auto xl:mx-0"
+              >
+                I am a{" "}
+                <span className="text-white/90 font-medium">
+                  Full Stack Developer 
+                </span>{" "}
+                {" "}
+                specializing in modern web application development using{" "}
+                <span className="text-white/90 font-medium">React.js</span> and{" "}
+                <span className="text-white/90 font-medium">JavaScript</span>.
+                Currently building{" "}
+                <span className="text-accent font-medium">VeriMart</span> — an
+                AI-powered shopping assistant demonstrating product recommendation
+                systems, price comparison, and intelligent user interaction.
+              </motion.p>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+                {stats.map((s, i) => (
+                  <StatCard key={s.label} {...s} delay={0.3 + i * 0.08} />
+                ))}
+              </div>
+
+              {/* Download CTA */}
+              <motion.button
+                variants={fadeIn("up", 0.7)}
+                initial="hidden"
+                animate="show"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleResumeDownload}
+                type="button"
+                className="group relative flex items-center justify-center gap-3
+                           w-full xl:w-auto xl:px-10 py-4 rounded-2xl
+                           font-bold text-primary text-sm uppercase tracking-widest
+                           overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-accent via-accent to-cyan-400" />
+                <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                <HiOutlineDownload className="relative text-lg" />
+                <span className="relative">Download Resume</span>
+              </motion.button>
+            </div>
+
+            {/* ══ RIGHT COLUMN ══ */}
+            <motion.div
+              variants={fadeIn("left", 0.3)}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="flex flex-col w-full xl:w-[48%] z-10"
+            >
+              {/* Tab Bar */}
+              <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="About sections">
+                {aboutData.map((item, i) => (
+                  <TabBtn
+                    key={item.title}
+                    item={item}
+                    active={index === i}
+                    onClick={() => handleTabClick(i)}
+                  />
+                ))}
+              </div>
+
+              {/* Panel */}
+              <div
+                className="relative rounded-2xl backdrop-blur-xl overflow-hidden min-h-[420px]"
+                style={{
+                  background:  "rgba(255,255,255,0.02)",
+                  border:      `1px solid ${currentTab.accent}28`,
+                  boxShadow:   `0 0 40px ${currentTab.glow}`,
+                  transition:  "border-color .4s ease, box-shadow .4s ease",
+                }}
+              >
+                {/* Coloured top accent line */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[2px]"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${currentTab.accent}85, transparent)`,
+                    transition: "background .4s ease",
+                  }}
+                />
+
+                {/* Panel header */}
+                <div className="flex items-center gap-2 px-6 pt-5 pb-4 border-b border-white/[0.06]">
+                  {(() => {
+                    const Icon = currentTab.icon;
+                    return <Icon style={{ color: currentTab.accent, transition: "color .3s" }} className="text-base" />;
+                  })()}
+                  <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-white/40">
+                    {currentTab.title}
+                  </span>
+                  <span className="ml-auto text-[10px] font-mono text-white/20">
+                    {currentTab.info.length} entries
+                  </span>
+                </div>
+
+                {/* Scrollable entries */}
+                <div className="overflow-y-auto max-h-[400px] px-4 py-4
+                                scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentTab.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -16 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      role="tabpanel"
+                      className="space-y-1"
+                    >
+                      {currentTab.info.map((item, i) => (
+                        <InfoEntry
+                          key={`${currentTab.title}-${i}`}
+                          item={item}
+                          index={i}
+                          total={currentTab.info.length}
+                          accent={currentTab.accent}
+                        />
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Bottom fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-8
+                                bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Footer hint */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="mt-3 text-center text-[10px] font-mono text-white/20 uppercase tracking-widest"
+              >
+                Scroll to explore · Click tabs to navigate
+              </motion.p>
+            </motion.div>
+
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default About;
