@@ -1,48 +1,35 @@
 {
-  "name": "modern-portfolio",
-  "version": "1.0.1",
+  "name": "abhishek-nagargoje-portfolio",
+  "version": "1.0.0",
   "private": true,
   "author": {
-    "name": "Sanidhya Kumar Verma",
-    "email": "sanidhya.verma12345@gmail.com",
-    "url": "https://github.com/sanidhyy"
+    "name": "Abhishek Nagargoje",
+    "email": "nagargojeabhishek96@gmail.com",
+    "url": "https://github.com/N-Abhishek-S"
   },
-  "description": "Ethan Smith is a Full-stack web developer with 10+ years of experience.",
+  "description": "Personal portfolio of Abhishek Nagargoje – MERN Stack Full Stack Developer building modern web applications using React, Node.js, and JavaScript.",
   "keywords": [
-    "react",
-    "next",
-    "nextjs",
-    "html",
-    "css",
-    "javascript",
-    "js",
-    "modern-ui",
-    "modern-ux",
     "portfolio",
+    "mern",
+    "react",
+    "nextjs",
+    "javascript",
+    "nodejs",
+    "express",
+    "mongodb",
+    "tailwind",
     "framer-motion",
-    "3d-website",
-    "particle-effect"
+    "web-developer"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanidhyy/modern-portfolio.git"
+    "url": "https://github.com/N-Abhishek-S/abhishek-nagargoje-portfolio.git"
   },
   "homepage": "https://n-abhishek-s.github.io/abhishek-nagargoje-portfolio",
   "bugs": {
-    "url": "https://github.com/sanidhyy/modern-portfolio/issues",
-    "email": "sanidhya.verma12345@gmail.com"
+    "url": "https://github.com/N-Abhishek-S/abhishek-nagargoje-portfolio/issues"
   },
-  "funding": [
-    {
-      "type": "patreon",
-      "url": "https://www.patreon.com/sanidhy"
-    },
-    {
-      "type": "Buy me a coffee",
-      "url": "https://www.buymeacoffee.com/sanidhy"
-    }
-  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
