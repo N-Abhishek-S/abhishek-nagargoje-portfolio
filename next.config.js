@@ -6,7 +6,7 @@ const nextConfig = {
   basePath: isProd ? `/${repo}` : "",
   assetPrefix: isProd ? `/${repo}/` : "",
   images: { unoptimized: true },
-  trailingSlash: true,   // ← add this one line only
+  trailingSlash: true,   // ← add this
 };
 
 module.exports = nextConfig;

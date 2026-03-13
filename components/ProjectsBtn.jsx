@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi2";
+import { assetPath } from "../utils/assetPath";
 
 const ProjectsBtn = () => {
   return (
     <div className="mx-auto xl:mx-0">
       <Link
-        href="/projects"  // ← "to" to "href"
+        href="/projects"
         className="relative w-[185px] h-[185px] flex justify-center items-center bg-circleStar bg-cover bg-center bg-no-repeat group"
       >
         <img
-          src="/rounded-text.png"
+          src={assetPath("/rounded-text.png")}
           alt="View my projects"
           width={141}
           height={148}

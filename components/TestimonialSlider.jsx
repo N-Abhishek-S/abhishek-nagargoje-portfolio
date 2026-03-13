@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { assetPath } from "../utils/assetPath";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -50,7 +51,7 @@ const TestimonialSlider = () => {
                 {/* avatar */}
                 <div className="mb-2 mx-auto">
                   <Image
-                    src={person.image}
+                    src={assetPath(person.image)}
                     width={100}
                     height={100}
                     alt={person.name}
@@ -73,7 +74,7 @@ const TestimonialSlider = () => {
               <div className="mb-4">
                 <FaQuoteLeft
                   className="text-4xl xl:text-6xl text-white/20 mx-auto md:mx-0"
-                  aria-aria-hidden
+                  aria-hidden
                 />
               </div>
 

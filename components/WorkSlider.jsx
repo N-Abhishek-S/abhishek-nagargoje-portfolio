@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { assetPath } from "../utils/assetPath";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -12,50 +13,18 @@ const workSlides = {
   slides: [
     {
       images: [
-        {
-          title: "title",
-          path: "/thumb1.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb2.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb3.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb4.jpg",
-          link: "http://example.com",
-        },
+        { title: "title", path: "/thumb1.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb2.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb3.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb4.jpg", link: "http://example.com" },
       ],
     },
     {
       images: [
-        {
-          title: "title",
-          path: "/thumb4.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb1.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb2.jpg",
-          link: "http://example.com",
-        },
-        {
-          title: "title",
-          path: "/thumb3.jpg",
-          link: "http://example.com",
-        },
+        { title: "title", path: "/thumb4.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb1.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb2.jpg", link: "http://example.com" },
+        { title: "title", path: "/thumb3.jpg", link: "http://example.com" },
       ],
     },
   ],
@@ -65,9 +34,7 @@ const WorkSlider = () => {
   return (
     <Swiper
       spaceBetween={10}
-      pagination={{
-        clickable: true,
-      }}
+      pagination={{ clickable: true }}
       modules={[Pagination]}
       className="h-[280px] sm:h-[480px]"
     >
@@ -82,7 +49,7 @@ const WorkSlider = () => {
                 <div className="flex items-center justify-center relative overflow-hidden group">
                   {/* image */}
                   <Image
-                    src={image.path}
+                    src={assetPath(image.path)}
                     alt={image.title}
                     width={500}
                     height={300}
@@ -102,13 +69,10 @@ const WorkSlider = () => {
                       rel="noreferrer noopener"
                       className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]"
                     >
-                      {/* title part 1 */}
                       <div className="delay-100">LIVE</div>
-                      {/* title part 2 */}
                       <div className="translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
                         PROJECT
                       </div>
-                      {/* icon */}
                       <div className="text-xl translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
                         <BsArrowRight aria-hidden />
                       </div>

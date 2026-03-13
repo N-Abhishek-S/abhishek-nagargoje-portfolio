@@ -9,7 +9,7 @@ import {
   HiAcademicCap,
   HiEnvelope,
 } from "react-icons/hi2";
-
+ 
 // nav data
 export const navData = [
   { name: "home", path: "/", Icon: HiHome },
