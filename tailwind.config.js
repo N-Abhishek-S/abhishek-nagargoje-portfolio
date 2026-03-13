@@ -1,11 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
+const repo = "abhishek-nagargoje-portfolio";
+const isProd = process.env.NODE_ENV === "production";
+const base = isProd ? `/${repo}` : "";
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -27,10 +30,10 @@ module.exports = {
         accent: "#F13024",
       },
       backgroundImage: {
-        explosion: 'url("/bg-explosion.png")',
-        circles: 'url("/bg-circles.png")',
-        circleStar: 'url("/circle-star.svg")',
-        site: 'url("/site-bg.svg")',
+        explosion: `url("${base}/bg-explosion.png")`,
+        circles:   `url("${base}/bg-circles.png")`,
+        circleStar:`url("${base}/circle-star.svg")`,
+        site:      `url("${base}/site-bg.svg")`,
       },
       animation: {
         "spin-slow": "spin 6s linear infinite",
