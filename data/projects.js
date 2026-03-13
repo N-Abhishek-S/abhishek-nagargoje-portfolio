@@ -1,98 +1,82 @@
-// Projects Data for Abhishek Nagargoje
+export const projectCategories = [
+  { id: "all",       label: "All Projects" },
+  { id: "client",    label: "Client Work"  },
+  { id: "ai",        label: "AI / ML"      },
+  { id: "frontend",  label: "Frontend"     },
+];
 
 export const projectsData = [
   {
     id: 1,
-    title: "VeriMart - AI Shopping Assistant",
-    description: `VeriMart is an AI-powered Health & E-Commerce website prototype built for 
-    the Avishkar state-level competition. It features AI voice health assistant, 
-    AI face analyzer for personalized recommendations, virtual try-on (planned), 
-    price comparison engine, and AI-based product recommendations.`,
-    shortDescription: "AI-powered Health & E-Commerce prototype for state-level competition",
-    image: "/projects/verimart.jpg",
-    category: "fullstack",
-    featured: true,
-    techStack: [
-      "React.js",
-      "Tailwind CSS",
-      "GSAP",
-      "Appwrite",
-      "OpenAI API",
-      "n8n",
-    ],
+    title: "Client Photography Website",
+    shortDescription:
+      "Professional photography portfolio built for a real client — gallery-first design with GSAP animations and Appwrite backend.",
+    description:
+      "A professional photography portfolio website developed for a client to showcase their work and attract new customers. Focused on visual presentation, smooth animations, and a modern UI suitable for a photography business.",
+    techStack: ["React.js", "Tailwind CSS", "GSAP", "Appwrite", "REST API"],
     features: [
-      "AI voice health assistant",
-      "AI face analyzer",
-      "Virtual try-on (planned)",
-      "Price comparison engine",
-      "AI product recommendations",
-      "UI-first competition prototype",
+      "Responsive photography gallery",
+      "Smooth page transitions via GSAP",
+      "Appwrite backend integration",
+      "Optimized image loading & display",
+      "Client-focused conversion design",
     ],
+    category: "client",
+    status: "Live",
+    featured: true,
+    role: "Full-stack — UI, animations & backend",
     links: {
-      github: "https://github.com/N-Abhishek-S",
-      live: null, // Add when deployed
+      github: null,
+      live: "https://n-abhishek-s.github.io/Client_photography_Website/",
     },
-    status: "In Development",
-    scale: "~200-300 products for demo dataset",
   },
   {
     id: 2,
-    title: "Mega Blog Project",
-    description: `A full-featured blog platform with user authentication, 
-    post creation, editing, and deletion capabilities. Built with React 
-    for the frontend and Appwrite for backend services.`,
-    shortDescription: "Full-featured blog platform with authentication and CRUD operations",
-    image: "/projects/megablog.jpg",
-    category: "fullstack",
-    featured: true,
-    techStack: [
-      "React.js",
-      "Appwrite",
-      "Tailwind CSS",
-    ],
+    title: "AI Health & E-Commerce Assistant",
+    shortDescription:
+      "Intelligent web platform combining healthcare assistance with AI-powered product recommendations — selected for State Level Competition.",
+    description:
+      "An AI-powered platform that blends healthcare assistance with smart e-commerce recommendations. Analyses user inputs and suggests relevant health products. Selected for a State Level Innovation Competition.",
+    techStack: ["React.js", "Tailwind CSS", "Appwrite", "OpenAI API"],
     features: [
-      "User authentication",
-      "Create, read, update, delete posts",
-      "Clean and responsive UI",
-      "Image uploads",
+      "AI-based product recommendation engine",
+      "Health assistance chat interface",
+      "Smart product analysis & filtering",
+      "Scalable e-commerce architecture",
+      "OpenAI API integration",
     ],
+    category: "ai",
+    status: "Live",
+    featured: true,
+    achievement: "State Level Innovation Competition",
+    role: "Full-stack — UI, AI integration & backend",
     links: {
-      github: "https://github.com/N-Abhishek-S",
-      live: null,
+      github: null,
+      live: "https://n-abhishek-s.github.io/AI_Ecommerce-Health-Assistant-/",
     },
-    status: "Completed",
   },
   {
     id: 3,
-    title: "Paytm Clone",
-    description: `A UI clone of the Paytm application built for practice 
-    and to showcase frontend development skills. Features a pixel-perfect 
-    recreation of the Paytm interface with responsive design.`,
-    shortDescription: "Frontend UI clone for skill building and practice",
-    image: "/projects/paytm.jpg",
-    category: "frontend",
-    featured: false,
-    techStack: [
-      "React.js",
-      "CSS",
-      "JavaScript",
-    ],
+    title: "MarsidiCars — Car Showroom",
+    shortDescription:
+      "Luxury automotive showroom with cinematic GSAP scroll animations, interactive car showcase layouts, and high-performance frontend.",
+    description:
+      "A visually impressive digital showroom for luxury vehicles. Demonstrates advanced frontend skills through animated sections, interactive layouts, and fully responsive design.",
+    techStack: ["React.js", "Tailwind CSS", "GSAP"],
     features: [
-      "Pixel-perfect UI clone",
-      "Responsive design",
-      "Modern UI components",
+      "Interactive car showcase layout",
+      "Cinematic GSAP scroll animations",
+      "Fully responsive across all devices",
+      "Modern UI for automotive brands",
+      "High-performance frontend architecture",
     ],
+    category: "frontend",
+    status: "Live",
+    featured: false,
+    role: "Frontend — architecture, animations & design",
     links: {
-      github: "https://github.com/N-Abhishek-S",
-      live: null,
+      github: null,
+      live: "https://n-abhishek-s.github.io/Cars_Showroom",
     },
-    status: "Completed",
   },
-];
-
-// Project Categories for filtering
-export const projectCategories = [
-  { id: "all", label: "All Projects" },
-  { id: "fullstack", label: "Full Stack" },
-  { id: "frontend", label: "Frontend" },
 ];
