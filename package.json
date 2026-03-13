@@ -33,7 +33,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out",
+ "deploy": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\" && gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "next lint"
   },
