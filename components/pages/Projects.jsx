@@ -31,6 +31,7 @@ export const projectsData = [
     status: "Live",
     featured: true,
     role: "Full-stack — UI, animations & backend",
+    thumbnail: "/clientWebImg.png",
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/Client_photography_Website/",
@@ -56,6 +57,7 @@ export const projectsData = [
     featured: true,
     achievement: "State Level Innovation Competition",
     role: "Full-stack — UI, AI integration & backend",
+    thumbnail: "/AiEcommercesWebImg.png",
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/AI_Ecommerce-Health-Assistant-/",
@@ -80,6 +82,7 @@ export const projectsData = [
     status: "Live",
     featured: false,
     role: "Frontend — architecture, animations & design",
+    thumbnail: "/MarsadisWebImg.png",
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/Cars_Showroom",
@@ -94,7 +97,6 @@ const STATUS_COLORS = {
   Archived:      { dot: "#6b7280", bg: "rgba(107,114,128,0.12)", text: "#9ca3af" },
 };
 
-// ── Accent colour per category ───────────────────────────────────────────────
 const CATEGORY_ACCENT = {
   client:   { from: "rgba(244,114,182,0.18)", to: "rgba(251,191,36,0.10)", pill: "#f472b6" },
   ai:       { from: "rgba(99,102,241,0.18)",  to: "rgba(168,85,247,0.12)", pill: "#818cf8" },
@@ -102,7 +104,6 @@ const CATEGORY_ACCENT = {
 };
 const accentFor = (cat) => CATEGORY_ACCENT[cat] || CATEGORY_ACCENT["ai"];
 
-// ── Subtle grid background ───────────────────────────────────────────────────
 const GridBackground = () => (
   <div
     aria-hidden
@@ -117,7 +118,6 @@ const GridBackground = () => (
   />
 );
 
-// ── Ambient glow blobs ───────────────────────────────────────────────────────
 const AmbientGlow = () => (
   <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
     <div style={{
@@ -135,7 +135,6 @@ const AmbientGlow = () => (
   </div>
 );
 
-// ── Status pill ──────────────────────────────────────────────────────────────
 const StatusPill = ({ status }) => {
   const c = STATUS_COLORS[status] || STATUS_COLORS["Archived"];
   return (
@@ -173,23 +172,31 @@ const ProjectCard = ({ project, index }) => {
           : "0 8px 32px rgba(0,0,0,0.25)",
       }}
     >
-      {/* Header strip */}
+      {/* ── Thumbnail header ── */}
       <div
-        className="relative h-44 flex items-center justify-center overflow-hidden"
+        className="relative h-44 overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${accent.from} 0%, ${accent.to} 100%)` }}
       >
-        {/* Large letter watermark */}
-        <span
-          className="select-none font-black"
+        {/* Screenshot image */}
+        <img
+          src={project.thumbnail}
+          alt={`${project.title} preview`}
+          className="w-full h-full object-cover object-top"
           style={{
-            fontSize: "7rem", lineHeight: 1,
-            color: "rgba(255,255,255,0.04)",
-            fontFamily: "'Georgia', serif",
-            letterSpacing: "-4px",
+            transition: "transform 0.5s ease, filter 0.3s ease",
+            transform: hovered ? "scale(1.05)" : "scale(1)",
+            filter: hovered ? "brightness(0.45)" : "brightness(0.85)",
           }}
-        >
-          {project.title.charAt(0)}
-        </span>
+        />
+
+        {/* Gradient overlay at bottom for text readability */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to top, rgba(8,11,20,0.7) 0%, transparent 55%)",
+            pointerEvents: "none",
+          }}
+        />
 
         {/* Top badges */}
         <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -214,7 +221,7 @@ const ProjectCard = ({ project, index }) => {
           <StatusPill status={project.status} />
         </div>
 
-        {/* Hover overlay */}
+        {/* Hover overlay with action buttons */}
         <AnimatePresence>
           {hovered && (
             <motion.div
@@ -223,7 +230,6 @@ const ProjectCard = ({ project, index }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="absolute inset-0 flex items-center justify-center gap-3"
-              style={{ background: "linear-gradient(to top, rgba(10,10,20,0.92) 0%, rgba(10,10,20,0.6) 100%)" }}
             >
               {project.links.github && (
                 <a
@@ -333,7 +339,7 @@ const ProjectCard = ({ project, index }) => {
   );
 };
 
-// ── Featured Spotlight — shows both featured projects side-by-side ────────────
+// ── Featured Spotlight ────────────────────────────────────────────────────────
 const FeaturedSpotlight = () => {
   const featured = projectsData.filter((p) => p.featured);
 
@@ -366,6 +372,45 @@ const FeaturedSpotlight = () => {
                 border: `1px solid ${accent.pill}30`,
               }}
             >
+              {/* Screenshot banner at top of featured card */}
+              <div className="relative w-full overflow-hidden" style={{ height: "200px" }}>
+                <img
+                  src={project.thumbnail}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-full object-cover object-top"
+                  style={{ filter: "brightness(0.75)" }}
+                />
+                {/* Bottom fade into card body */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(to bottom, transparent 30%, rgba(8,11,20,0.95) 100%)`,
+                    pointerEvents: "none",
+                  }}
+                />
+                {/* Achievement badge overlaid on image */}
+                {project.achievement && (
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-flex items-center gap-1.5"
+                      style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", backdropFilter: "blur(8px)" }}
+                    >
+                      <BsTrophy /> {project.achievement}
+                    </span>
+                  </div>
+                )}
+                {project.category === "client" && (
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+                      style={{ background: `${accent.pill}20`, color: accent.pill, border: `1px solid ${accent.pill}35`, backdropFilter: "blur(8px)", letterSpacing: "0.1em" }}
+                    >
+                      Real Client Project
+                    </span>
+                  </div>
+                )}
+              </div>
+
               {/* Corner glow */}
               <div
                 aria-hidden
@@ -374,28 +419,6 @@ const FeaturedSpotlight = () => {
               />
 
               <div className="relative z-10 p-8 md:p-10">
-                {/* Achievement badge */}
-                {project.achievement && (
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span
-                      className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full inline-flex items-center gap-1.5"
-                      style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}
-                    >
-                      <BsTrophy /> {project.achievement}
-                    </span>
-                  </div>
-                )}
-                {project.category === "client" && (
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span
-                      className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
-                      style={{ background: `${accent.pill}20`, color: accent.pill, border: `1px solid ${accent.pill}35`, letterSpacing: "0.1em" }}
-                    >
-                      Real Client Project
-                    </span>
-                  </div>
-                )}
-
                 <h3
                   className="text-3xl md:text-4xl font-black mb-3 leading-tight tracking-tight"
                   style={{ color: "#f1f5f9" }}
@@ -455,7 +478,7 @@ const FeaturedSpotlight = () => {
                   )}
                 </div>
 
-                {/* Scope metrics */}
+                {/* Feature bullets */}
                 <div
                   className="mt-6 pt-5 grid grid-cols-2 gap-3"
                   style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}

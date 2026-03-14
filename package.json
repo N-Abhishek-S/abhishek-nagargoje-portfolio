@@ -33,11 +33,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
- "deploy": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\" && gh-pages -d out --dotfiles",
+    "deploy": "next build && node -e \"require('fs').writeFileSync('out/.nojekyll', '')\" && gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^10.12.16",
     "next": "^16.1.6",
     "react": "18.2.0",

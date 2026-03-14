@@ -4,13 +4,20 @@ import { useMemo, useState, useCallback } from "react";
 import CountUp from "react-countup";
 import { FaJs, FaReact, FaJava, FaGitAlt } from "react-icons/fa";
 import {
-  SiNextdotjs, SiTailwindcss, SiAppwrite,
-  SiReactrouter, SiGreensock, SiThreedotjs,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiAppwrite,
+  SiReactrouter,
+  SiGreensock,
+  SiThreedotjs,
 } from "react-icons/si";
 import {
-  HiOutlineSparkles, HiOutlineDownload,
-  HiOutlineAcademicCap, HiOutlineBriefcase,
-  HiOutlineLightBulb, HiOutlineCode,
+  HiOutlineSparkles,
+  HiOutlineDownload,
+  HiOutlineAcademicCap,
+  HiOutlineBriefcase,
+  HiOutlineLightBulb,
+  HiOutlineCode,
 } from "react-icons/hi";
 
 import Avatar from "../Avatar";
@@ -26,30 +33,30 @@ export const aboutData = [
     title: "skills",
     icon: HiOutlineCode,
     accent: "#818cf8",
-    glow:   "rgba(99,102,241,0.20)",
+    glow: "rgba(99,102,241,0.20)",
     info: [
       {
         title: "Frontend Development",
         icons: [
-          { Icon: FaReact,       label: "React.js" },
-          { Icon: FaJs,          label: "JavaScript (ES6+)" },
+          { Icon: FaReact, label: "React.js" },
+          { Icon: FaJs, label: "JavaScript (ES6+)" },
           { Icon: SiTailwindcss, label: "Tailwind CSS" },
           { Icon: SiReactrouter, label: "React Router" },
-          { Icon: SiGreensock,   label: "GSAP Animations" },
+          { Icon: SiGreensock, label: "GSAP Animations" },
         ],
       },
       {
         title: "Backend & APIs",
         icons: [
           { Icon: SiAppwrite, label: "Appwrite Backend" },
-          { Icon: FaJava,     label: "Java Fundamentals" },
-          { Icon: FaGitAlt,   label: "Git & GitHub" },
+          { Icon: FaJava, label: "Java Fundamentals" },
+          { Icon: FaGitAlt, label: "Git & GitHub" },
         ],
       },
       {
         title: "Currently Exploring",
         icons: [
-          { Icon: SiNextdotjs,  label: "Next.js" },
+          { Icon: SiNextdotjs, label: "Next.js" },
           { Icon: SiThreedotjs, label: "Three.js" },
         ],
       },
@@ -59,7 +66,7 @@ export const aboutData = [
     title: "experience",
     icon: HiOutlineBriefcase,
     accent: "#34d399",
-    glow:   "rgba(52,211,153,0.18)",
+    glow: "rgba(52,211,153,0.18)",
     info: [
       {
         title: "Full Stack Web Developer",
@@ -79,7 +86,7 @@ export const aboutData = [
     title: "education",
     icon: HiOutlineAcademicCap,
     accent: "#f472b6",
-    glow:   "rgba(244,114,182,0.18)",
+    glow: "rgba(244,114,182,0.18)",
     info: [
       {
         title: "Bachelor of Computer Applications (BCA)",
@@ -98,7 +105,7 @@ export const aboutData = [
     title: "goals",
     icon: HiOutlineLightBulb,
     accent: "#fbbf24",
-    glow:   "rgba(251,191,36,0.18)",
+    glow: "rgba(251,191,36,0.18)",
     info: [
       {
         title: "Industry-Ready Full Stack Developer",
@@ -117,10 +124,10 @@ export const aboutData = [
 ];
 
 const stats = [
-  { value: 8,    suffix: "+", label: "Projects Built" },
-  { value: 10,   suffix: "+", label: "Technologies" },
-  { value: 2,    suffix: "+", label: "Years Coding" },
-  { value: 2026, suffix: "",  label: "Graduation" },
+  { value: 8, suffix: "+", label: "Projects Built" },
+  { value: 10, suffix: "+", label: "Technologies" },
+  { value: 2, suffix: "+", label: "Years Coding" },
+  { value: 2026, suffix: "", label: "Graduation" },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -136,9 +143,11 @@ const StatCard = ({ value, suffix, label, delay }) => (
                hover:border-accent/40 hover:bg-white/[0.06]
                transition-all duration-500 overflow-hidden"
   >
-    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity
+    <div
+      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity
                     duration-500 bg-gradient-radial from-accent/10 via-transparent
-                    to-transparent pointer-events-none" />
+                    to-transparent pointer-events-none"
+    />
     <div className="text-3xl font-black text-accent tabular-nums">
       <CountUp start={0} end={value} duration={2.5} separator="" />
       <span className="text-xl">{suffix}</span>
@@ -165,16 +174,25 @@ const SkillChip = ({ Icon, label, accent }) => {
       <div
         className="w-10 h-10 rounded-xl flex items-center justify-center text-lg transition-all duration-300"
         style={{
-          background:   hovered ? `${accent}18` : "rgba(255,255,255,0.05)",
-          border:       hovered ? `1px solid ${accent}55` : "1px solid rgba(255,255,255,0.10)",
-          boxShadow:    hovered ? `0 0 16px ${accent}40` : "none",
+          background: hovered ? `${accent}18` : "rgba(255,255,255,0.05)",
+          border: hovered
+            ? `1px solid ${accent}55`
+            : "1px solid rgba(255,255,255,0.10)",
+          boxShadow: hovered ? `0 0 16px ${accent}40` : "none",
         }}
       >
-        <Icon style={{ color: hovered ? accent : "rgba(255,255,255,0.70)", transition: "color .25s" }} />
+        <Icon
+          style={{
+            color: hovered ? accent : "rgba(255,255,255,0.70)",
+            transition: "color .25s",
+          }}
+        />
       </div>
       <span
         className="text-[9px] uppercase tracking-wider transition-colors duration-300"
-        style={{ color: hovered ? "rgba(255,255,255,.60)" : "rgba(255,255,255,.30)" }}
+        style={{
+          color: hovered ? "rgba(255,255,255,.60)" : "rgba(255,255,255,.30)",
+        }}
       >
         {label}
       </span>
@@ -199,11 +217,13 @@ const TabBtn = ({ item, active, onClick }) => {
                  font-semibold uppercase tracking-widest transition-all duration-300
                  focus:outline-none focus-visible:ring-2"
       style={{
-        background:  active ? `${item.accent}22` : "rgba(255,255,255,0.05)",
-        color:       active ? item.accent         : "rgba(255,255,255,0.50)",
-        border:      active ? `1px solid ${item.accent}50` : "1px solid rgba(255,255,255,0.10)",
-        boxShadow:   active ? `0 4px 20px ${item.glow}` : "none",
-        transform:   active ? "translateY(-1px)"  : "none",
+        background: active ? `${item.accent}22` : "rgba(255,255,255,0.05)",
+        color: active ? item.accent : "rgba(255,255,255,0.50)",
+        border: active
+          ? `1px solid ${item.accent}50`
+          : "1px solid rgba(255,255,255,0.10)",
+        boxShadow: active ? `0 4px 20px ${item.glow}` : "none",
+        transform: active ? "translateY(-1px)" : "none",
       }}
     >
       <TabIcon className="text-sm" />
@@ -226,7 +246,9 @@ const InfoEntry = ({ item, index: i, total, accent }) => {
     >
       <div
         className="flex gap-4 p-4 rounded-xl transition-all duration-300"
-        style={{ background: hovered ? "rgba(255,255,255,0.04)" : "transparent" }}
+        style={{
+          background: hovered ? "rgba(255,255,255,0.04)" : "transparent",
+        }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -235,7 +257,7 @@ const InfoEntry = ({ item, index: i, total, accent }) => {
             className="w-2 h-2 rounded-full transition-all duration-300"
             style={{
               background: hovered ? accent : `${accent}55`,
-              boxShadow:  hovered ? `0 0 8px ${accent}` : "none",
+              boxShadow: hovered ? `0 0 8px ${accent}` : "none",
             }}
           />
           {i < total - 1 && (
@@ -257,8 +279,8 @@ const InfoEntry = ({ item, index: i, total, accent }) => {
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 background: `${accent}15`,
-                color:       accent,
-                border:      `1px solid ${accent}30`,
+                color: accent,
+                border: `1px solid ${accent}30`,
               }}
             >
               {item.stage}
@@ -266,13 +288,20 @@ const InfoEntry = ({ item, index: i, total, accent }) => {
           )}
 
           {item.description && (
-            <p className="text-white/50 text-xs leading-relaxed">{item.description}</p>
+            <p className="text-white/50 text-xs leading-relaxed">
+              {item.description}
+            </p>
           )}
 
           {item.icons && (
             <div className="flex flex-wrap gap-4 mt-4">
               {item.icons.map(({ Icon, label }) => (
-                <SkillChip key={label} Icon={Icon} label={label} accent={accent} />
+                <SkillChip
+                  key={label}
+                  Icon={Icon}
+                  label={label}
+                  accent={accent}
+                />
               ))}
             </div>
           )}
@@ -290,11 +319,16 @@ const InfoEntry = ({ item, index: i, total, accent }) => {
    MAIN COMPONENT
 ───────────────────────────────────────────────────────────── */
 const About = () => {
-  const [index, setIndex]    = useState(0);
-  const currentTab           = useMemo(() => aboutData[index], [index]);
-  const handleTabClick       = useCallback((i) => setIndex(i), []);
+  const [index, setIndex] = useState(0);
+  const currentTab = useMemo(() => aboutData[index], [index]);
+  const handleTabClick = useCallback((i) => setIndex(i), []);
   const handleResumeDownload = useCallback(() => {
-    window.open(personalInfo.resumePath, "_blank", "noopener,noreferrer");
+    const link = document.createElement("a");
+    link.href = "/Abhishek_MERN_Resume.pdf";
+    link.download = "Abhishek_MERN_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }, []);
 
   return (
@@ -302,13 +336,14 @@ const About = () => {
       <style>{`@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');`}</style>
 
       <div className="relative min-h-screen py-28 xl:py-32 text-center xl:text-left overflow-hidden">
-
         {/* Ambient blobs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                          w-[800px] h-[800px] bg-gradient-radial from-accent/[0.03] to-transparent rounded-full" />
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                          w-[800px] h-[800px] bg-gradient-radial from-accent/[0.03] to-transparent rounded-full"
+          />
         </div>
 
         <Circles />
@@ -321,8 +356,10 @@ const About = () => {
           exit="hidden"
           className="hidden xl:flex absolute bottom-0 left-0 w-[380px] h-[520px] pointer-events-none"
           style={{
-            maskImage: "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, black 50%, transparent 100%), linear-gradient(to top, black 60%, transparent 100%)",
             maskComposite: "intersect",
             WebkitMaskComposite: "source-in",
             opacity: 0.55,
@@ -333,10 +370,8 @@ const About = () => {
 
         <div className="container mx-auto px-4 xl:px-8 h-full">
           <div className="flex flex-col xl:flex-row gap-12 xl:gap-16 items-start">
-
             {/* ══ LEFT COLUMN ══ */}
             <div className="flex-1 flex flex-col justify-center z-10 max-w-xl mx-auto xl:mx-0">
-
               {/* Badge */}
               <motion.div
                 variants={fadeIn("down", 0.1)}
@@ -372,7 +407,10 @@ const About = () => {
                 <br />
                 <span
                   className="text-3xl xl:text-4xl font-black"
-                  style={{ WebkitTextStroke: "1px rgba(255,255,255,0.22)", color: "transparent" }}
+                  style={{
+                    WebkitTextStroke: "1px rgba(255,255,255,0.22)",
+                    color: "transparent",
+                  }}
                 >
                   with React & JavaScript
                 </span>
@@ -388,16 +426,16 @@ const About = () => {
               >
                 I am a{" "}
                 <span className="text-white/90 font-medium">
-                  Full Stack Developer 
+                  Full Stack Developer
                 </span>{" "}
-                {" "}
                 specializing in modern web application development using{" "}
                 <span className="text-white/90 font-medium">React.js</span> and{" "}
                 <span className="text-white/90 font-medium">JavaScript</span>.
                 Currently building{" "}
                 <span className="text-accent font-medium">VeriMart</span> — an
-                AI-powered shopping assistant demonstrating product recommendation
-                systems, price comparison, and intelligent user interaction.
+                AI-powered shopping assistant demonstrating product
+                recommendation systems, price comparison, and intelligent user
+                interaction.
               </motion.p>
 
               {/* Stats Grid */}
@@ -438,7 +476,11 @@ const About = () => {
               className="flex flex-col w-full xl:w-[48%] z-10"
             >
               {/* Tab Bar */}
-              <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="About sections">
+              <div
+                className="flex flex-wrap gap-2 mb-6"
+                role="tablist"
+                aria-label="About sections"
+              >
                 {aboutData.map((item, i) => (
                   <TabBtn
                     key={item.title}
@@ -453,10 +495,10 @@ const About = () => {
               <div
                 className="relative rounded-2xl backdrop-blur-xl overflow-hidden min-h-[420px]"
                 style={{
-                  background:  "rgba(255,255,255,0.02)",
-                  border:      `1px solid ${currentTab.accent}28`,
-                  boxShadow:   `0 0 40px ${currentTab.glow}`,
-                  transition:  "border-color .4s ease, box-shadow .4s ease",
+                  background: "rgba(255,255,255,0.02)",
+                  border: `1px solid ${currentTab.accent}28`,
+                  boxShadow: `0 0 40px ${currentTab.glow}`,
+                  transition: "border-color .4s ease, box-shadow .4s ease",
                 }}
               >
                 {/* Coloured top accent line */}
@@ -472,7 +514,15 @@ const About = () => {
                 <div className="flex items-center gap-2 px-6 pt-5 pb-4 border-b border-white/[0.06]">
                   {(() => {
                     const Icon = currentTab.icon;
-                    return <Icon style={{ color: currentTab.accent, transition: "color .3s" }} className="text-base" />;
+                    return (
+                      <Icon
+                        style={{
+                          color: currentTab.accent,
+                          transition: "color .3s",
+                        }}
+                        className="text-base"
+                      />
+                    );
                   })()}
                   <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-white/40">
                     {currentTab.title}
@@ -483,8 +533,10 @@ const About = () => {
                 </div>
 
                 {/* Scrollable entries */}
-                <div className="overflow-y-auto max-h-[400px] px-4 py-4
-                                scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
+                <div
+                  className="overflow-y-auto max-h-[400px] px-4 py-4
+                                scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10"
+                >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentTab.title}
@@ -509,8 +561,10 @@ const About = () => {
                 </div>
 
                 {/* Bottom fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-8
-                                bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-8
+                                bg-gradient-to-t from-black/20 to-transparent pointer-events-none"
+                />
               </div>
 
               {/* Footer hint */}
@@ -523,7 +577,6 @@ const About = () => {
                 Scroll to explore · Click tabs to navigate
               </motion.p>
             </motion.div>
-
           </div>
         </div>
       </div>
