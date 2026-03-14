@@ -1,2 +1,2 @@
-:HL["/abhishek-nagargoje-portfolio/_next/static/chunks/86e88ae2e02ae050.css","style"]
-0:{"buildId":"nPVHShyqTMdVpTtIoz00v","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/abhishek-nagargoje-portfolio/_next/static/chunks/7fad75a9b756b084.css","style"]
+0:{"buildId":"w3O9hGp0Suqf1UTxzmTTS","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
