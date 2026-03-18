@@ -16,6 +16,8 @@ const achievementCategories = [
   { id: "workshops",    label: "Workshops & Certs", icon: "book" },
 ];
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const achievementsData = {
   competitions: [
     {
@@ -27,7 +29,7 @@ const achievementsData = {
       status: "1st Place",
       year: "2025",
       project: "AI Shopping Assistant",
-      proof: "/Dis_Level.jpeg",
+      proof: `${BASE}/Dis_Level.jpeg`,
       proofLabel: "View Certificate",
     },
     {
@@ -39,8 +41,8 @@ const achievementsData = {
       status: "3rd Place",
       year: "2025",
       project: "AI Shopping Assistant",
-      proof: "/Region_level.jpeg",
-      medal: "/Medil.jpeg",
+      proof: `${BASE}/Region_level.jpeg`,
+      medal: `${BASE}/Medil.jpeg`,
       proofLabel: "View Certificate",
     },
     {
@@ -52,7 +54,7 @@ const achievementsData = {
       status: "Participant",
       year: "2026",
       project: "AI-Driven Commerce & Smart Health Platform",
-      proof: "/state_level.jpeg",
+      proof: `${BASE}/state_level.jpeg`,
       proofLabel: "View Certificate",
     },
   ],
@@ -66,7 +68,7 @@ const achievementsData = {
       status: "Completed",
       year: "Feb 2026",
       issuer: "be10x",
-      proof: "/Benx10_Certificate.jpg",
+      proof: `${BASE}/Benx10_Certificate.jpg`,
       proofLabel: "View Certificate",
     },
     {
@@ -78,7 +80,7 @@ const achievementsData = {
       status: "Completed",
       year: "Feb 2026",
       issuer: "OfficeMaster",
-      proof: "/PowerBi_Certificate.jpg",
+      proof: `${BASE}/PowerBi_Certificate.jpg`,
       proofLabel: "View Certificate",
     },
     {
@@ -90,7 +92,7 @@ const achievementsData = {
       status: "Completed",
       year: "Feb 2026",
       issuer: "OfficeMaster",
-      proof: "/Excel_Certificate.jpg",
+      proof: `${BASE}/Excel_Certificate.jpg`,
       proofLabel: "View Certificate",
     },
   ],

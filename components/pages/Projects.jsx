@@ -11,6 +11,8 @@ export const projectCategories = [
   { id: "frontend", label: "Frontend"     },
 ];
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const projectsData = [
   {
     id: 1,
@@ -31,7 +33,7 @@ export const projectsData = [
     status: "Live",
     featured: true,
     role: "Full-stack — UI, animations & backend",
-    thumbnail: "/clientWebImg.png",
+    thumbnail: `${BASE}/clientWebImg.png`,
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/Client_photography_Website/",
@@ -57,7 +59,7 @@ export const projectsData = [
     featured: true,
     achievement: "State Level Innovation Competition",
     role: "Full-stack — UI, AI integration & backend",
-    thumbnail: "/AiEcommercesWebImg.png",
+    thumbnail: `${BASE}/AiEcommercesWebImg.png`,
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/AI_Ecommerce-Health-Assistant-/",
@@ -82,7 +84,7 @@ export const projectsData = [
     status: "Live",
     featured: false,
     role: "Frontend — architecture, animations & design",
-    thumbnail: "/MarsadisWebImg.png",
+    thumbnail: `${BASE}/MarsadisWebImg.png`,
     links: {
       github: null,
       live: "https://n-abhishek-s.github.io/Cars_Showroom",
