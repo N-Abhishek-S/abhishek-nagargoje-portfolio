@@ -1,4 +1,4 @@
 1:"$Sreact.fragment"
 2:I[9056,["/abhishek-nagargoje-portfolio/_next/static/chunks/3ba07dc0af127371.js","/abhishek-nagargoje-portfolio/_next/static/chunks/502ccdf23c99e4df.js","/abhishek-nagargoje-portfolio/_next/static/chunks/fece7cd184b348d7.js","/abhishek-nagargoje-portfolio/_next/static/chunks/e993ed57711bcf73.js","/abhishek-nagargoje-portfolio/_next/static/chunks/6c4c6800bfac8758.js"],"default"]
 3:I[47939,["/abhishek-nagargoje-portfolio/_next/static/chunks/3ba07dc0af127371.js","/abhishek-nagargoje-portfolio/_next/static/chunks/502ccdf23c99e4df.js","/abhishek-nagargoje-portfolio/_next/static/chunks/fece7cd184b348d7.js","/abhishek-nagargoje-portfolio/_next/static/chunks/e993ed57711bcf73.js","/abhishek-nagargoje-portfolio/_next/static/chunks/6c4c6800bfac8758.js"],"default"]
-0:{"buildId":"K--0ch4S7NEFcrilBb9e6","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"ZbrsBzfomVIXuq4P64GQN","rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"loading":null,"isPartial":false}
